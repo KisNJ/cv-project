@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import JobDescription from "./JobDescription";
-export default function AddExperience({ id }) {
+export default function AddExperience({
+  id,
+  company_name,
+  job_title,
+  start,
+  end,
+  description,
+  updateExperience,
+  deleteThisJob,
+}) {
   const [expData, setExpData] = useState({
     id: id,
     company_name: "",
@@ -9,11 +18,32 @@ export default function AddExperience({ id }) {
     end: "",
     description: [],
   });
+
+  // useEffect(()=>{
+  //   console.log("ere")
+  //   setExpData( { id:id,company_name:company_name,job_title:job_title,start:start,end:end,description:description})
+  // },[ id,company_name,job_title,start,end,description])
+  useEffect(() => {
+    //console.log("changs")
+    updateExperience(expData);
+  }, [expData]);
   function addDesc(e) {
     e.preventDefault();
+    setExpData((old) => ({
+      ...old,
+      description: [
+        ...old.description,
+        {
+          jd_id: old.description.length,
+          wantDot: false,
+          desc: "",
+        },
+      ],
+    }));
   }
-  function deleteThisJob(e) {
+  function deleteThisJobL(e) {
     e.preventDefault();
+    deleteThisJob(id);
   }
   function formChange(e) {
     setExpData((old) => ({
@@ -21,8 +51,26 @@ export default function AddExperience({ id }) {
       [e.target.id]: e.target.value,
     }));
   }
+  function updateDescriptions(data) {
+    let temp = { ...expData };
+    for (let i = 0; i < temp.description.length; i++) {
+      if (data.jd_id === temp.description[i].jd_id) {
+        temp.description[i] = data;
+      }
+    }
+    for (let i = 0; i < temp.description.length; i++) {
+      temp.description[i].jd_id = i;
+    }
+    setExpData({ ...temp });
+  }
+  function deleteDescription(id) {
+    // console.log(id)
+    let temp = { ...expData };
+    temp.description = temp.description.filter((x) => x.jd_id !== id);
+    setExpData({ ...temp });
+  }
   return (
-    <form>
+    <div>
       <fieldset>
         <label htmlFor="job_title">Job Title</label>
         <input
@@ -30,7 +78,7 @@ export default function AddExperience({ id }) {
           name="job_title"
           id="job_title"
           onChange={formChange}
-          value={expData.job_title}
+          value={job_title}
         />
         <label htmlFor="company_name">Company Name</label>
         <input
@@ -38,7 +86,7 @@ export default function AddExperience({ id }) {
           name="company_name"
           id="company_name"
           onChange={formChange}
-          value={expData.company_name}
+          value={company_name}
         />
       </fieldset>
       <fieldset>
@@ -48,7 +96,7 @@ export default function AddExperience({ id }) {
           name="start"
           id="start"
           onChange={formChange}
-          value={expData.start}
+          value={start}
         />
         <label htmlFor="end">End of work</label>
         <input
@@ -56,14 +104,22 @@ export default function AddExperience({ id }) {
           name="end"
           id="end"
           onChange={formChange}
-          value={expData.end}
+          value={end}
         />
       </fieldset>
       <fieldset>
-        <JobDescription />
-        <button onCLick={addDesc}>Add Descripton</button>
+        {description.map((x) => (
+          <JobDescription
+            jd_id={x.jd_id}
+            wantDot={x.wantDot}
+            desc={x.desc}
+            updateDescriptions={updateDescriptions}
+            deleteDescription={deleteDescription}
+          />
+        ))}
+        <button onClick={addDesc}>Add Descripton</button>
       </fieldset>
-      <button onClick={deleteThisJob}>DELETE</button>
-    </form>
+      <button onClick={deleteThisJobL}>DELETE</button>
+    </div>
   );
 }
