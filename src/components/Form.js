@@ -30,10 +30,20 @@ export default function Form() {
   }
   function addEdu(e) {
     e.preventDefault();
-    // setFormData(old=>({
-    //   ...old,
-
-    // }))
+    setFormData((old) => ({
+      ...old,
+      education: [
+        ...old.education,
+        {
+          id: old.education.length,
+          school_name: "",
+          major: "",
+          start: "",
+          end: "",
+          description: [],
+        },
+      ],
+    }));
   }
   function updateExperience(data) {
     let temp = { ...formData };
@@ -55,15 +65,33 @@ export default function Form() {
   }
   function deleteThisJob(id) {
     let temp = { ...formData };
-   console.log(id)
     temp.experience = temp.experience.filter((x) => x.id !== id);
-    console.log(temp)
     for (let i = 0; i < temp.experience.length; i++) {
       temp.experience[i].id = i;
     }
-    setFormData({...temp})
+    setFormData({ ...temp });
   }
-  console.log(formData)
+  function deleteThisEducation(id) {
+    let temp = { ...formData };
+    temp.education = temp.education.filter((x) => x.id !== id);
+    for (let i = 0; i < temp.education.length; i++) {
+      temp.education[i].id = i;
+    }
+    setFormData({ ...temp });
+  }
+  function updateEducation(data) {
+    let temp = { ...formData };
+    for (let i = 0; i < temp.education.length; i++) {
+      if (temp.education[i].id === data.id) {
+        temp.education[i] = data;
+      }
+    }
+    for (let i = 0; i < temp.education.length; i++) {
+      temp.education[i].id = i;
+    }
+    console.log(temp);
+    setFormData({ ...temp });
+  }
   return (
     <form>
       <fieldset>
@@ -86,6 +114,7 @@ export default function Form() {
       </fieldset>
       <fieldset>
         <legend>EXPERIENCE</legend>
+        {console.log(formData.experience)}
         {formData.experience.map((x) => (
           <AddExperience
             id={x.id}
@@ -102,9 +131,50 @@ export default function Form() {
         <button onClick={addExp}>Add Exerience</button>
       </fieldset>
       <fieldset>
-        <legend>EDUCATION</legend>,
-        <AddEducation />
+        <legend>EDUCATION</legend>
+        {formData.education.map((x) => (
+          <AddEducation
+            id={x.id}
+            school_name={x.school_name}
+            major={x.major}
+            start={x.start}
+            end={x.end}
+            deleteThisEducation={deleteThisEducation}
+            description={x.description}
+            updateEducation={updateEducation}
+          />
+        ))}
+
         <button onClick={addEdu}>Add Education</button>
+      </fieldset>
+      {/* contanct: [],
+    languages: [],
+    technologies: [], */}
+      <fieldset>
+        <fieldset>
+          <div>
+          <label htmlFor="email"></label>
+          <input type="text" name="email" id="email" />
+          </div>
+          <div>
+          <label htmlFor="location"></label>
+          <input type="text" name="location" id="location" />
+          </div>
+          <div>
+          <label htmlFor="github"></label>
+          <input type="text" name="github" id="github" />
+          </div>
+          <div>
+          <label htmlFor="linkedin"></label>
+          <input type="text" name="linkedin" id="linkedin" />
+          </div>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="languages">Programming languages</label>
+        </fieldset>
+        <fieldset>
+        <label htmlFor="technologies">Technologies</label>
+        </fieldset>
       </fieldset>
     </form>
   );

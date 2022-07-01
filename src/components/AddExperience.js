@@ -12,19 +12,23 @@ export default function AddExperience({
 }) {
   const [expData, setExpData] = useState({
     id: id,
-    company_name: "",
-    job_title: "",
-    start: "",
-    end: "",
-    description: [],
+    company_name: company_name,
+    job_title: job_title,
+    start: start,
+    end: end,
+    description: description,
   });
-
-  // useEffect(()=>{
-  //   console.log("ere")
-  //   setExpData( { id:id,company_name:company_name,job_title:job_title,start:start,end:end,description:description})
-  // },[ id,company_name,job_title,start,end,description])
+  useEffect(()=>{
+    setExpData({
+      id,
+      company_name,
+      job_title,
+      start,
+      end,
+      description,
+    })
+  },[id,job_title,company_name,start,end,description])
   useEffect(() => {
-    //console.log("changs")
     updateExperience(expData);
   }, [expData]);
   function addDesc(e) {
@@ -92,7 +96,7 @@ export default function AddExperience({
       <fieldset>
         <label htmlFor="start">Beginning of work</label>
         <input
-          type="date"
+          type="month"
           name="start"
           id="start"
           onChange={formChange}
@@ -100,7 +104,7 @@ export default function AddExperience({
         />
         <label htmlFor="end">End of work</label>
         <input
-          type="date"
+          type="month"
           name="end"
           id="end"
           onChange={formChange}
