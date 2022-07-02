@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import AddEducation from "./AddEducation";
+import React, { useEffect, useState } from "react";
+import AddEducation from "./EditComponents/AddEducation";
 import AddExperience from "./AddExperience";
-import { Contact } from "./Contact";
-import { Languages } from "./Languages";
-import { Technologies } from "./Technologies";
-export default function Form() {
+import { Contact } from "./EditComponents/Contact";
+import { Languages } from "./EditComponents/Languages";
+import { Technologies } from "./EditComponents/Technologies";
+export default function Form({giveDataToPreview}) {
   const [formData, setFormData] = useState({
     name: "",
     job_title: "",
@@ -116,6 +116,9 @@ export default function Form() {
     temp.technologies=technologies
     setFormData({...temp})
   }
+  useEffect(()=>{
+    giveDataToPreview(formData)
+  },[formData])
   return (
     <form>
       <fieldset>
