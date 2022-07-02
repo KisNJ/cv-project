@@ -111,6 +111,11 @@ export default function Form() {
     temp.languages=languages
     setFormData({...temp})
   }
+  function updateTechnologies(technologies){
+    let temp={...formData}
+    temp.technologies=technologies
+    setFormData({...temp})
+  }
   return (
     <form>
       <fieldset>
@@ -169,7 +174,7 @@ export default function Form() {
       <fieldset>
         <Contact updateContactData={updateContactData} gmail={formData.contanct.gmail} github={formData.contanct.github} location={formData.contanct.location} linkedin={formData.contanct.linkedin}/>
         <Languages languagesFromForm={formData.languages} updateLanguages={updateLanguages}/>
-        <Technologies/>
+        <Technologies technologiesFromForm={formData.technologies} updateTechnologies={updateTechnologies}/>
       </fieldset>
     </form>
   );
