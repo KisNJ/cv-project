@@ -74,8 +74,9 @@ export default function AddExperience({
     setExpData({ ...temp });
   }
   return (
-    <div>
-      <fieldset>
+    <div className="experience">
+      <fieldset className="properties">
+        <div>
         <label htmlFor="job_title">Job Title</label>
         <input
           type="text"
@@ -84,6 +85,8 @@ export default function AddExperience({
           onChange={formChange}
           value={job_title}
         />
+        </div>
+        <div>
         <label htmlFor="company_name">Company Name</label>
         <input
           type="text"
@@ -92,8 +95,10 @@ export default function AddExperience({
           onChange={formChange}
           value={company_name}
         />
+        </div>
       </fieldset>
-      <fieldset>
+      <fieldset className="dates">
+        <div>
         <label htmlFor="start">Beginning of work</label>
         <input
           type="month"
@@ -102,6 +107,8 @@ export default function AddExperience({
           onChange={formChange}
           value={start}
         />
+        </div>
+        <div>
         <label htmlFor="end">End of work</label>
         <input
           type="month"
@@ -110,6 +117,7 @@ export default function AddExperience({
           onChange={formChange}
           value={end}
         />
+        </div>
       </fieldset>
       <fieldset>
         {description.map((x) => (

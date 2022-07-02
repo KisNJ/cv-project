@@ -8,7 +8,7 @@ function App() {
     job_title: "",
     experience: [],
     education: [],
-    contanct: {
+    contact: {
       gmail: "",
       location: "",
       github: "",

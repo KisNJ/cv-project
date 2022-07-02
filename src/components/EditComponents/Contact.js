@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import gmail_icon from "../contact_img_folder/gmail_icon.webp";
-import github_icon from "../contact_img_folder/github.svg";
-import location_icon from "../contact_img_folder/location-sign.svg";
-import linkedin_icon from "../contact_img_folder/linkedin.png";
+import gmail_icon from "../../contact_img_folder/gmail_icon.webp";
+import github_icon from "../../contact_img_folder/github.svg";
+import location_icon from "../../contact_img_folder/location-sign.svg";
+import linkedin_icon from "../../contact_img_folder/linkedin.png";
 export const Contact = ({ gmail, location, github, linkedin,updateContactData }) => {
   const [contactData, setContactData] = useState({
     gmail: gmail,

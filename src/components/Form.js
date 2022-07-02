@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AddEducation from "./EditComponents/AddEducation";
-import AddExperience from "./AddExperience";
+import AddExperience from "./EditComponents/AddExperience";
 import { Contact } from "./EditComponents/Contact";
 import { Languages } from "./EditComponents/Languages";
 import { Technologies } from "./EditComponents/Technologies";
@@ -10,7 +10,7 @@ export default function Form({giveDataToPreview}) {
     job_title: "",
     experience: [],
     education: [],
-    contanct: {
+    contact: {
       gmail: "",
       location: "",
       github: "",
@@ -103,7 +103,7 @@ export default function Form({giveDataToPreview}) {
   }
   function updateContactData(data){
     let temp={...formData}
-    temp.contanct=data
+    temp.contact=data
     setFormData({...temp})
   }
   function updateLanguages(languages){
@@ -121,7 +121,8 @@ export default function Form({giveDataToPreview}) {
   },[formData])
   return (
     <form>
-      <fieldset>
+      <fieldset id="first">
+        <div>
         <label htmlFor="name">Enter your name</label>
         <input
           type="text"
@@ -130,6 +131,8 @@ export default function Form({giveDataToPreview}) {
           onChange={formChange}
           value={formData.name}
         />
+        </div>
+        <div>
         <label htmlFor="job_title">Enter your job title</label>
         <input
           type="text"
@@ -138,10 +141,10 @@ export default function Form({giveDataToPreview}) {
           onChange={formChange}
           value={formChange.job_title}
         />
+         </div>
       </fieldset>
       <fieldset>
-        <legend>EXPERIENCE</legend>
-        {console.log(formData.experience)}
+        <div className="title">EXPERIENCE</div>
         {formData.experience.map((x) => (
           <AddExperience
             id={x.id}
@@ -158,7 +161,7 @@ export default function Form({giveDataToPreview}) {
         <button onClick={addExp}>Add Exerience</button>
       </fieldset>
       <fieldset>
-        <legend>EDUCATION</legend>
+        <div className="title">EDUCATION</div>
         {formData.education.map((x) => (
           <AddEducation
             id={x.id}
@@ -175,7 +178,7 @@ export default function Form({giveDataToPreview}) {
         <button onClick={addEdu}>Add Education</button>
       </fieldset>
       <fieldset>
-        <Contact updateContactData={updateContactData} gmail={formData.contanct.gmail} github={formData.contanct.github} location={formData.contanct.location} linkedin={formData.contanct.linkedin}/>
+        <Contact updateContactData={updateContactData} gmail={formData.contact.gmail} github={formData.contact.github} location={formData.contact.location} linkedin={formData.contact.linkedin}/>
         <Languages languagesFromForm={formData.languages} updateLanguages={updateLanguages}/>
         <Technologies technologiesFromForm={formData.technologies} updateTechnologies={updateTechnologies}/>
       </fieldset>
