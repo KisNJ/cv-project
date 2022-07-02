@@ -106,6 +106,11 @@ export default function Form() {
     temp.contanct=data
     setFormData({...temp})
   }
+  function updateLanguages(languages){
+    let temp={...formData}
+    temp.languages=languages
+    setFormData({...temp})
+  }
   return (
     <form>
       <fieldset>
@@ -163,7 +168,7 @@ export default function Form() {
       </fieldset>
       <fieldset>
         <Contact updateContactData={updateContactData} gmail={formData.contanct.gmail} github={formData.contanct.github} location={formData.contanct.location} linkedin={formData.contanct.linkedin}/>
-        <Languages />
+        <Languages languagesFromForm={formData.languages} updateLanguages={updateLanguages}/>
         <Technologies/>
       </fieldset>
     </form>
