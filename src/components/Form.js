@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import AddEducation from "./AddEducation";
 import AddExperience from "./AddExperience";
+import { Contact } from "./Contact";
+import { Languages } from "./Languages";
+import { Technologies } from "./Technologies";
 export default function Form() {
   const [formData, setFormData] = useState({
     name: "",
     job_title: "",
     experience: [],
     education: [],
-    contanct: [],
+    contanct: {
+      gmail: "",
+      location: "",
+      github: "",
+      linkedin: "",
+    },
     languages: [],
     technologies: [],
   });
+  
   function addExp(e) {
     e.preventDefault();
     setFormData((old) => ({
@@ -92,6 +101,11 @@ export default function Form() {
     console.log(temp);
     setFormData({ ...temp });
   }
+  function updateContactData(data){
+    let temp={...formData}
+    temp.contanct=data
+    setFormData({...temp})
+  }
   return (
     <form>
       <fieldset>
@@ -147,34 +161,10 @@ export default function Form() {
 
         <button onClick={addEdu}>Add Education</button>
       </fieldset>
-      {/* contanct: [],
-    languages: [],
-    technologies: [], */}
       <fieldset>
-        <fieldset>
-          <div>
-          <label htmlFor="email"></label>
-          <input type="text" name="email" id="email" />
-          </div>
-          <div>
-          <label htmlFor="location"></label>
-          <input type="text" name="location" id="location" />
-          </div>
-          <div>
-          <label htmlFor="github"></label>
-          <input type="text" name="github" id="github" />
-          </div>
-          <div>
-          <label htmlFor="linkedin"></label>
-          <input type="text" name="linkedin" id="linkedin" />
-          </div>
-        </fieldset>
-        <fieldset>
-          <label htmlFor="languages">Programming languages</label>
-        </fieldset>
-        <fieldset>
-        <label htmlFor="technologies">Technologies</label>
-        </fieldset>
+        <Contact updateContactData={updateContactData} gmail={formData.contanct.gmail} github={formData.contanct.github} location={formData.contanct.location} linkedin={formData.contanct.linkedin}/>
+        <Languages />
+        <Technologies/>
       </fieldset>
     </form>
   );
