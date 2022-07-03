@@ -119,7 +119,7 @@ export default function AddExperience({
         />
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset className="descriptions">
         {description.map((x) => (
           <JobDescription
             jd_id={x.jd_id}
@@ -131,7 +131,7 @@ export default function AddExperience({
         ))}
         <button onClick={addDesc}>Add Descripton</button>
       </fieldset>
-      <button onClick={deleteThisJobL}>DELETE</button>
+      <button className='deleteBtn'onClick={deleteThisJobL}>DELETE</button>
     </div>
   );
 }

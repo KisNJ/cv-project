@@ -26,8 +26,8 @@ export const Languages = ({languagesFromForm,updateLanguages}) => {
     updateLanguages(languages)
   },[languages])
     return (
-    <fieldset>
-      <div>Programming languages</div>
+    <fieldset className="generated-container">
+      <div className="title">Programming languages</div>
       {languages.map(x=><GeneratedInput id={x.id} content={x.content} dataChanged={dataChanged} deleteLanguage={deleteLanguage}/>)}
       <button onClick={addLanguage}>Add Language</button>
     </fieldset>

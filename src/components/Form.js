@@ -143,7 +143,7 @@ export default function Form({giveDataToPreview}) {
         />
          </div>
       </fieldset>
-      <fieldset>
+      <fieldset className="cont">
         <div className="title">EXPERIENCE</div>
         {formData.experience.map((x) => (
           <AddExperience

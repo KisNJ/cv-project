@@ -28,28 +28,27 @@ export const Contact = ({ gmail, location, github, linkedin,updateContactData })
     updateContactData(contactData)
   },[contactData])
   return (
-    <fieldset>
-    <div>Contact</div>
+    <fieldset className="contact">
+    <div className="title">Contact</div>
+    <div className="contact-input">
       <div>
-        <label htmlFor="gmail"></label>
         <img src={gmail_icon} alt="" />
         <input type="text" name="gmail" id="gmail" value={gmail} onChange={formChange}/>
       </div>
       <div>
-        <label htmlFor="location"></label>
         <img src={location_icon} alt="" />
         <input type="text" name="location" id="location" value={location} onChange={formChange}/>
       </div>
       <div>
-        <label htmlFor="github"></label>
         <img src={github_icon} alt="" />
         <input type="text" name="github" id="github" value={github} onChange={formChange}/>
       </div>
       <div>
-        <label htmlFor="linkedin"></label>
         <img src={linkedin_icon} alt="" />
         <input type="text" name="linkedin" id="linkedin" value={linkedin}onChange={formChange}/>
       </div>
+      </div>
     </fieldset>
+
   );
 };

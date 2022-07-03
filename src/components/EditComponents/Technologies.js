@@ -26,8 +26,8 @@ export const Technologies = ({technologiesFromForm,updateTechnologies}) => {
     updateTechnologies(technologies)
   },[technologies])
     return (
-    <fieldset>
-      <div>Technologies</div>
+    <fieldset className="generated-container">
+      <div className="title">Technologies</div>
       {technologies.map(x=><GeneratedInput id={x.id} content={x.content} dataChanged={dataChanged} deleteLanguage={deleteLanguage}/>)}
       <button onClick={addTechnology}>Add Language</button>
     </fieldset>

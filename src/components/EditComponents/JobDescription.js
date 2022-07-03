@@ -26,7 +26,7 @@ export default function JobDescription({jd_id,wantDot,desc,updateDescriptions,de
         deleteDescription(descData.jd_id)
     }
     return(
-        <div>
+        <div className='description'>
             <input type="checkbox" id="wantDot" name="wantDot" onChange={descDataChange} value={wantDot}/>
             <input type="text" placeholder='Description' name="desc" id="desc" onChange={descDataChange} value={desc}/>
             <button onClick={deleteThisDescription}>Delete</button>

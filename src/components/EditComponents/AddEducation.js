@@ -73,8 +73,9 @@ export default function AddEducation({
     deleteThisEducation(id);
   }
   return (
-    <div>
-      <fieldset>
+    <div className="experience">
+      <fieldset className="properties">
+        <div>
         <label htmlFor="school">School name</label>
         <input
           type="text"
@@ -83,6 +84,8 @@ export default function AddEducation({
           value={school_name}
           onChange={formChange}
         />
+        </div>
+        <div>
         <label htmlFor="major">Major</label>
         <input
           type="text"
@@ -91,6 +94,8 @@ export default function AddEducation({
           value={major}
           onChange={formChange}
         />
+        </div>
+        <div>
         <label htmlFor="start">Start</label>
         <input
           type="month"
@@ -99,6 +104,8 @@ export default function AddEducation({
           value={start}
           onChange={formChange}
         />
+        </div>
+        <div>
         <label htmlFor="end">End</label>
         <input
           type="month"
@@ -107,8 +114,9 @@ export default function AddEducation({
           value={end}
           onChange={formChange}
         />
+        </div>
       </fieldset>
-      <fieldset>
+      <fieldset className="descriptions">
         {description.map((x) => (
           <JobDescription
             jd_id={x.jd_id}
@@ -120,7 +128,7 @@ export default function AddEducation({
         ))}
         <button onClick={addDesc}>Add Descripton</button>
       </fieldset>
-      <button onClick={deleteThisEducationL}>DELETE</button>
+      <button className='deleteBtn' onClick={deleteThisEducationL}>DELETE</button>
     </div>
   );
 }

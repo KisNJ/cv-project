@@ -24,7 +24,7 @@ export const GeneratedInput = ({id,content,dataChanged,deleteLanguage}) => {
         deleteLanguage(id)
     }
     return(
-        <div>
+        <div className='generated'>
         <input type="text" name={id} value={content} id={id} onChange={changeData} />
         <button onClick={deleteLanguageL}>Delete</button>
         </div>
