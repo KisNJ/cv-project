@@ -32,19 +32,19 @@ export const Contact = ({ gmail, location, github, linkedin,updateContactData })
     <div className="title">Contact</div>
     <div className="contact-input">
       <div>
-        <img src={gmail_icon} alt="" />
+        <img src={gmail_icon} className="form-icon"alt="" />
         <input type="text" name="gmail" id="gmail" value={gmail} onChange={formChange}/>
       </div>
       <div>
-        <img src={location_icon} alt="" />
+        <img src={location_icon} className="form-icon"alt="" />
         <input type="text" name="location" id="location" value={location} onChange={formChange}/>
       </div>
       <div>
-        <img src={github_icon} alt="" />
+        <img src={github_icon} className="form-icon"alt="" />
         <input type="text" name="github" id="github" value={github} onChange={formChange}/>
       </div>
       <div>
-        <img src={linkedin_icon} alt="" />
+        <img src={linkedin_icon} className="form-icon"alt="" />
         <input type="text" name="linkedin" id="linkedin" value={linkedin}onChange={formChange}/>
       </div>
       </div>

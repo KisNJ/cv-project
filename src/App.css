@@ -12,10 +12,8 @@ body{
   grid-template-columns: repeat(auto-fit,minmax(535px,1fr));
   gap: 1rem;
 }
-#root:not(form){
-  
-}
-img{
+
+.form-icon{
   max-height:40px;
   max-width: 45px;
 }
@@ -163,4 +161,20 @@ button:hover{
 .generated>input{
   font-size: 1.4rem;
   flex-grow: 1;
+}
+.btns{
+  display: flex;
+  align-items: center;
+}
+input[type="file"]{
+  background-color: #475569;
+  color: #f8fafc;
+  width: min-content;
+}
+input[type="file"]::-webkit-file-upload-button {
+  background: #475569;
+  color: #f8fafc;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 7px;
 }

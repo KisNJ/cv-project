@@ -6,6 +6,7 @@ export default function AddExperience({
   job_title,
   start,
   end,
+  logo,
   description,
   updateExperience,
   deleteThisJob,
@@ -17,6 +18,7 @@ export default function AddExperience({
     start: start,
     end: end,
     description: description,
+    logo:logo
   });
   useEffect(()=>{
     setExpData({
@@ -26,8 +28,9 @@ export default function AddExperience({
       start,
       end,
       description,
+      logo
     })
-  },[id,job_title,company_name,start,end,description])
+  },[id,job_title,company_name,start,end,description,logo])
   useEffect(() => {
     updateExperience(expData);
   }, [expData]);
@@ -50,9 +53,13 @@ export default function AddExperience({
     deleteThisJob(id);
   }
   function formChange(e) {
+    let url=""
+    if(e.target.type==="file"){
+      url=URL.createObjectURL(e.target.files[0])
+    }
     setExpData((old) => ({
       ...old,
-      [e.target.id]: e.target.value,
+      [e.target.id]:e.target.type==="file"?url:e.target.value,
     }));
   }
   function updateDescriptions(data) {
@@ -68,7 +75,6 @@ export default function AddExperience({
     setExpData({ ...temp });
   }
   function deleteDescription(id) {
-    // console.log(id)
     let temp = { ...expData };
     temp.description = temp.description.filter((x) => x.jd_id !== id);
     setExpData({ ...temp });
@@ -129,7 +135,10 @@ export default function AddExperience({
             deleteDescription={deleteDescription}
           />
         ))}
+        <div className="btns">
         <button onClick={addDesc}>Add Descripton</button>
+        <input type="file"accept="image/png, image/jpeg image/svg  image/webp" name="logo" id="logo" onChange={formChange}/> 
+        </div>
       </fieldset>
       <button className='deleteBtn'onClick={deleteThisJobL}>DELETE</button>
     </div>

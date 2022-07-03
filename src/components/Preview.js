@@ -16,12 +16,14 @@ export default function Preview({ recievedData }) {
     technologies,
   } = recievedData;
   return (
-    <div id="left-side">
-      <div>
+
+      <div id="cont">
         <header>
           <h1>{name}</h1>
           <h2>{job_title}</h2>
         </header>
+        <div className="full">
+        <div id="left-side">
         <div className="experiences">
           {experience.length > 0 ? <div className="prev-title">Experience</div> : ""}
           {experience.map((x) => (
@@ -30,18 +32,20 @@ export default function Preview({ recievedData }) {
               job_title={x.job_title}
               start={x.start}
               end={x.end}
+              logo={x.logo}
               description={x.description}
             />
           ))}
         </div>
         <div>
-          {education.length > 0 ? <div className="prev-title">Education</div> : ""}
+          {education.length > 0 ? <div className="prev-title" style={{marginTop:"20px"}}>Education</div> : ""}
           {education.map((x) => (
             <DisplayEducation
               school_name={x.school_name}
               major={x.major}
               start={x.start}
               end={x.end}
+              logo={x.logo}
               description={x.description}
             />
           ))}
@@ -49,18 +53,19 @@ export default function Preview({ recievedData }) {
       </div>
       <div id="right-side">
         <div>
-          <div className="prev-title">Contact</div>
+          <div className="prev-title-right">{(contact.gmail!==""||contact.github!==""||contact.location!==""||contact.linkedin!=="")?"Contact":""}</div>
           {<DisplayContact gmail={contact.gmail} github={contact.github} location={contact.location} linkedin={contact.linkedin}/>}
         </div>
-        <div>
-          {languages.length>0?<div className="prev-title second">Programming languages</div>:""}
+        <div className='makegap'>
+          {languages.length>0?<div className="prev-title-right second">Programming languages</div>:""}
          
           {languages.map(x=> <DisplayLanguages content={x.content}/>)}
         </div>
-        <div>
-        {technologies.length>0?<div className="prev-title second">Technologies</div>:""}
+        <div className='makegap'>
+        {technologies.length>0?<div className="prev-title-right second">Technologies</div>:""}
           {technologies.map(x=><DisplayTechnologies content={x.content}/>)}
         </div>
+      </div>
       </div>
     </div>
   );

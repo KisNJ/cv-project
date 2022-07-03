@@ -29,7 +29,7 @@ export const Technologies = ({technologiesFromForm,updateTechnologies}) => {
     <fieldset className="generated-container">
       <div className="title">Technologies</div>
       {technologies.map(x=><GeneratedInput id={x.id} content={x.content} dataChanged={dataChanged} deleteLanguage={deleteLanguage}/>)}
-      <button onClick={addTechnology}>Add Language</button>
+      <button onClick={addTechnology}>Add Technology</button>
     </fieldset>
   );
 };

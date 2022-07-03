@@ -9,16 +9,18 @@ export default function AddEducation({
   description,
   updateEducation,
   deleteThisEducation,
+  logo,
 }) {
   const [eduData, setEduData] = useState({
     id: id,
     school_name: school_name,
     major: major,
     start: start,
-    end:end,
+    logo:logo,
+    end: end,
     description: description,
   });
-  useEffect(()=>{
+  useEffect(() => {
     setEduData({
       id,
       school_name,
@@ -26,15 +28,20 @@ export default function AddEducation({
       start,
       end,
       description,
-    })
-  },[id,major,school_name,start,end,description])
+      logo,
+    });
+  }, [id, major, school_name, start, end, description,logo]);
   useEffect(() => {
     updateEducation(eduData);
   }, [eduData]);
   function formChange(e) {
+    let url = "";
+    if (e.target.type === "file") {
+      url = URL.createObjectURL(e.target.files[0]);
+    }
     setEduData((old) => ({
       ...old,
-      [e.target.id]: e.target.value,
+      [e.target.id]: e.target.type === "file" ? url : e.target.value,
     }));
   }
   function updateDescriptions(data) {
@@ -76,46 +83,49 @@ export default function AddEducation({
     <div className="experience">
       <fieldset className="properties">
         <div>
-        <label htmlFor="school">School name</label>
-        <input
-          type="text"
-          name="school"
-          id="school_name"
-          value={school_name}
-          onChange={formChange}
-        />
+          <label htmlFor="school">School name</label>
+          <input
+            type="text"
+            name="school"
+            id="school_name"
+            value={school_name}
+            onChange={formChange}
+          />
         </div>
         <div>
-        <label htmlFor="major">Major</label>
-        <input
-          type="text"
-          name="major"
-          id="major"
-          value={major}
-          onChange={formChange}
-        />
-        </div>
-        <div>
-        <label htmlFor="start">Start</label>
-        <input
-          type="month"
-          name="start"
-          id="start"
-          value={start}
-          onChange={formChange}
-        />
-        </div>
-        <div>
-        <label htmlFor="end">End</label>
-        <input
-          type="month"
-          name="end"
-          id="end"
-          value={end}
-          onChange={formChange}
-        />
+          <label htmlFor="major">Major</label>
+          <input
+            type="text"
+            name="major"
+            id="major"
+            value={major}
+            onChange={formChange}
+          />
         </div>
       </fieldset>
+      <fieldset className="dates">
+        <div>
+          <label htmlFor="start">Start</label>
+          <input
+            type="month"
+            name="start"
+            id="start"
+            value={start}
+            onChange={formChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="end">End</label>
+          <input
+            type="month"
+            name="end"
+            id="end"
+            value={end}
+            onChange={formChange}
+          />
+        </div>
+      </fieldset>
+
       <fieldset className="descriptions">
         {description.map((x) => (
           <JobDescription
@@ -126,9 +136,20 @@ export default function AddEducation({
             deleteDescription={deleteDescription}
           />
         ))}
-        <button onClick={addDesc}>Add Descripton</button>
+        <div>
+          <button onClick={addDesc}>Add Descripton</button>
+          <input
+            type="file"
+            accept="image/png, image/jpeg image/svg  image/webp"
+            name="logo"
+            id="logo"
+            onChange={formChange}
+          />
+        </div>
       </fieldset>
-      <button className='deleteBtn' onClick={deleteThisEducationL}>DELETE</button>
+      <button className="deleteBtn" onClick={deleteThisEducationL}>
+        DELETE
+      </button>
     </div>
   );
 }

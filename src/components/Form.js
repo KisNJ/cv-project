@@ -32,6 +32,7 @@ export default function Form({giveDataToPreview}) {
           job_title: "",
           start: "",
           end: "",
+          logo:"",
           description: [],
         },
       ],
@@ -48,6 +49,7 @@ export default function Form({giveDataToPreview}) {
           school_name: "",
           major: "",
           start: "",
+          logo:"",
           end: "",
           description: [],
         },
@@ -55,6 +57,7 @@ export default function Form({giveDataToPreview}) {
     }));
   }
   function updateExperience(data) {
+    console.log(data)
     let temp = { ...formData };
     for (let i = 0; i < temp.experience.length; i++) {
       if (temp.experience[i].id === data.id) {
@@ -152,6 +155,7 @@ export default function Form({giveDataToPreview}) {
             job_title={x.job_title}
             start={x.start}
             end={x.end}
+            logo={x.logo}
             deleteThisJob={deleteThisJob}
             description={x.description}
             updateExperience={updateExperience}
@@ -169,6 +173,7 @@ export default function Form({giveDataToPreview}) {
             major={x.major}
             start={x.start}
             end={x.end}
+            logo={x.logo}
             deleteThisEducation={deleteThisEducation}
             description={x.description}
             updateEducation={updateEducation}
