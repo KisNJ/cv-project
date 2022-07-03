@@ -1,7 +1,10 @@
 import React from "react";
+import '../Preview.css'
 import { DisplayExperience } from "./PreviewComponents/DisplayExperience";
 import { DisplayEducation } from "./PreviewComponents/DisplayEducation";
 import {DisplayContact} from './PreviewComponents/DisplayContact'
+import {DisplayLanguages} from './PreviewComponents/DisplayLanguages'
+import { DisplayTechnologies } from "./PreviewComponents/DisplayTechnologies";
 export default function Preview({ recievedData }) {
   let {
     name,
@@ -14,14 +17,13 @@ export default function Preview({ recievedData }) {
   } = recievedData;
   return (
     <div id="left-side">
-      {JSON.stringify(recievedData)}
       <div>
         <header>
           <h1>{name}</h1>
           <h2>{job_title}</h2>
         </header>
-        <div>
-          {experience.length > 0 ? <div>Experience</div> : ""}
+        <div className="experiences">
+          {experience.length > 0 ? <div className="prev-title">Experience</div> : ""}
           {experience.map((x) => (
             <DisplayExperience
               company_name={x.company_name}
@@ -33,11 +35,11 @@ export default function Preview({ recievedData }) {
           ))}
         </div>
         <div>
-          {education.length > 0 ? <div>Education</div> : ""}
+          {education.length > 0 ? <div className="prev-title">Education</div> : ""}
           {education.map((x) => (
             <DisplayEducation
-              school_name={x.company_name}
-              major={x.job_title}
+              school_name={x.school_name}
+              major={x.major}
               start={x.start}
               end={x.end}
               description={x.description}
@@ -47,16 +49,17 @@ export default function Preview({ recievedData }) {
       </div>
       <div id="right-side">
         <div>
-          <div>Contact</div>
+          <div className="prev-title">Contact</div>
           {<DisplayContact gmail={contact.gmail} github={contact.github} location={contact.location} linkedin={contact.linkedin}/>}
         </div>
         <div>
-          {languages.length>0?<div>Programming languages</div>:""}
-          {languages.map(x=><div>{x.content}</div>)}
+          {languages.length>0?<div className="prev-title second">Programming languages</div>:""}
+         
+          {languages.map(x=> <DisplayLanguages content={x.content}/>)}
         </div>
         <div>
-        {technologies.length>0?<div>Technologies</div>:""}
-          {technologies.map(x=><div>{x.content}</div>)}
+        {technologies.length>0?<div className="prev-title second">Technologies</div>:""}
+          {technologies.map(x=><DisplayTechnologies content={x.content}/>)}
         </div>
       </div>
     </div>

@@ -8,6 +8,9 @@ body{
 .App{
   padding: 25px;
   background-color: #475569;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(535px,1fr));
+  gap: 1rem;
 }
 #root:not(form){
   
@@ -134,6 +137,9 @@ button:hover{
 .description input[type="checkbox"]{
   width: 25px;
   accent-color: #475569;
+}
+.contact-input input{
+  font-size: 1.2rem;
 }
 .contact-input{
   display: flex;

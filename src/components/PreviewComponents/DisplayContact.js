@@ -5,23 +5,27 @@ import location_icon from "../../contact_img_folder/location-sign.svg";
 import linkedin_icon from "../../contact_img_folder/linkedin.png";
 export const DisplayContact = ({ gmail, github, linkedin, location }) => {
   return (
-    <div>
+    <div className="contacts">
+      {gmail!==""?
       <div>
         <img src={gmail_icon} alt="" />
         <div>{gmail}</div>
-      </div>
+      </div>:""}
+      {location!==""?
       <div>
         <img src={location_icon} alt="" />
         <div>{location}</div>
-      </div>
+      </div>:""}
+       {github!==""?
       <div>
         <img src={github_icon} alt="" />
         <div>{github}</div>
-      </div>
+      </div>:""}
+      {linkedin!==""?
       <div>
         <img src={linkedin_icon} alt="" />
         <div>{linkedin}</div>
-      </div>
+      </div>:""}
     </div>
   );
 };
