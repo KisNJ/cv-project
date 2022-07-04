@@ -4,7 +4,9 @@ import AddExperience from "./EditComponents/AddExperience";
 import { Contact } from "./EditComponents/Contact";
 import { Languages } from "./EditComponents/Languages";
 import { Technologies } from "./EditComponents/Technologies";
-export default function Form({giveDataToPreview}) {
+import { basic } from "./basic";
+export default function Form({giveDataToPreview,setRecievedDataL}) {
+  console.log("re")
   const [formData, setFormData] = useState({
     name: "",
     job_title: "",
@@ -122,6 +124,10 @@ export default function Form({giveDataToPreview}) {
   useEffect(()=>{
     giveDataToPreview(formData)
   },[formData])
+  function addExample(e){
+    e.preventDefault();
+    setRecievedDataL(basic)
+  }
   return (
     <form>
       <fieldset id="first">
@@ -186,6 +192,9 @@ export default function Form({giveDataToPreview}) {
         <Contact updateContactData={updateContactData} gmail={formData.contact.gmail} github={formData.contact.github} location={formData.contact.location} linkedin={formData.contact.linkedin}/>
         <Languages languagesFromForm={formData.languages} updateLanguages={updateLanguages}/>
         <Technologies technologiesFromForm={formData.technologies} updateTechnologies={updateTechnologies}/>
+      </fieldset>
+      <fieldset className='field'>
+        <button onClick={addExample}>Add Example resume</button>
       </fieldset>
     </form>
   );

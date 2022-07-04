@@ -11,6 +11,7 @@ body{
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(535px,1fr));
   gap: 1rem;
+  position: relative;
 }
 
 .form-icon{
